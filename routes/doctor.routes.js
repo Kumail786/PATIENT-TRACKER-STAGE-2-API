@@ -24,17 +24,17 @@ const happyJoiSignupSchema = Joi.object({
       password,
     } = req.body
     if(!email){
-      return res.send({
+      return res.status(400).send({
         message : "Please Fill Email"
       })
     }
     if(!name){
-      return res.send({
+      return res.status(400).send({
         message : "Must Fill Username"
       })
     }
     if(!password){
-      return res.send({
+      return res.status(400).send({
         message : "Password is requried"
       })
     }
@@ -43,7 +43,7 @@ const happyJoiSignupSchema = Joi.object({
   
     const emailformatting = email.split("@");
     if (emailformatting.length < 2) {
-      return res.send({
+      return res.status(400).send({
         success: false,
         message: "Format of Email is Wrong"
       });
@@ -53,7 +53,7 @@ const happyJoiSignupSchema = Joi.object({
      const doctorexist = await Doctor.findOne({email})
   
   if(doctorexist){
-    return res.send({
+    return res.status(400).send({
   message : "Doctor Already Exist"
     })
   }
