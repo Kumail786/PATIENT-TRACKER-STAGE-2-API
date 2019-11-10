@@ -123,7 +123,7 @@ console.log(token)
   router.post("/login", async (req, res) => {
     let { email, password } = req.body;
     if (!email) {
-      return res.send({
+      return res.status(400).send({
         success: false,
         message: "Please enter the email address"
       });
@@ -135,7 +135,7 @@ console.log(token)
       email
     });
     if (error) {
-      return res.send({
+      return res.status(400).send({
         success: false,
         message: error.details[0].message
       });
@@ -152,7 +152,7 @@ console.log(token)
   
       const isMatch = await bcrypt.compare(password, doctor.password);
       if (!isMatch) {
-        return res.send({
+        return res.status(400).send({
           success: false,
           message: "Invalid Password"
         });
@@ -167,14 +167,14 @@ console.log(token)
   
       const token = jwt.sign(payload, JWT_SECRET);
   
-      return res.send({
+      return res.status(400).send({
         success: true,
         message: "Doctor logged-in successfully",
         doctor,
         token
       });
     } catch (error) {
-      return res.send({
+      return res.status(400).send({
         success: false,
         message: "Internal server error"
       });
