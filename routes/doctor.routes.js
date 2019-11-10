@@ -167,7 +167,7 @@ console.log(token)
   
       const token = jwt.sign(payload, JWT_SECRET);
   
-      return res.status(400).send({
+      return res.send({
         success: true,
         message: "Doctor logged-in successfully",
         doctor,
