@@ -181,30 +181,21 @@ console.log(token)
       });
     }
   });
-//=====================================Doctor Adding Patient For The Very First Time =================>//
-try{
-router.post('/addpatient',async(req,res)=>{
-  let Patient = {
-    name,
-    disease,
-    dateOfArrival,
-  } = req.body
 
-  const patient = await new Patient({
-    name,
-    disease,
-    dateOfArrival
-  })
-
- await patient.save()
-})
-}catch{
-res.status(400).send({
-  message : "Internal Error"
-})
-}
 
 
   //==================================Doctor Getting List of All Patients off himself =====================>//
+router.get('/patients',(req,res)=>{
+  Patient.find().then(patients=>{
+    res.send({
+      patients
+    })
+  }).catch(error=>{
+res.send({
+  error
+})
+  })
+})
+
   
   module.exports = router;
