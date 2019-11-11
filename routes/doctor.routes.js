@@ -191,7 +191,7 @@ router.get('/patients',(req,res)=>{
       patients
     })
   }).catch(error=>{
-res.send({
+res.status(400).send({
   error
 })
   })
@@ -202,11 +202,50 @@ res.send({
 router.get('/patients/:id',(req,res)=>{
   Patient.findById(req.params.id).then(patient=>{
     res.send({
-      patient
+      patient,
+      
+    })
+  }).catch(error=>{
+    res.status(400).send({
+      error
     })
   })
 })
 
+//=====================Doctor Adding New Record of Specific Patient==============================>//
+
+router.post('/patients/adddata/:id',(req,res)=>{
+  Patient.findByIdAndUpdate(req.params.id).then(patient=>{
+    const oldrecords = patient.history
+    const newrecord = req.body
+    oldrecords.push(newrecord)
+
+    patient.history = oldrecords
+    patient.save()
+    res.send({
+      history : patient.history,
+      message : "Record Added"
+    })
+  }).catch(error=>{
+    res.status(400).send({
+      error
+    })
+  })
+})
+
+//======================Doctor Getting History of Specific Patient ===============================>/
+
+router.get('/patients/history/:id',(req,res)=>{
+  Patient.findById(req.params.id).then(patient=>{
+    res.send({
+     history : patient.history
+    })
+  }).catch(error=>{
+    res.status(400).send({
+      error
+    })
+  })
+})
 
   
   module.exports = router;
