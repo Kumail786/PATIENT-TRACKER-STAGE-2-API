@@ -18,10 +18,12 @@ try{
       } = req.body
     
      const data = new Patient({
-patient
+name,
+disease,
+dateOfArrival,
      })
     
-     await patient.save()
+     await data.save()
      res.send({
          data
      })
