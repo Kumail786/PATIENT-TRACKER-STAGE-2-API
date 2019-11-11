@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const Joi = require('@hapi/joi')
 const Doctor = require('../models/doctor.model')
+const Patient = require('../models/patient.model')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
@@ -180,5 +181,30 @@ console.log(token)
       });
     }
   });
+//=====================================Doctor Adding Patient For The Very First Time =================>//
+try{
+router.post('/addpatient',async(req,res)=>{
+  let Patient = {
+    name,
+    disease,
+    dateOfArrival,
+  } = req.body
+
+  const patient = await new Patient({
+    name,
+    disease,
+    dateOfArrival
+  })
+
+ await patient.save()
+})
+}catch{
+res.status(400).send({
+  message : "Internal Error"
+})
+}
+
+
+  //==================================Doctor Getting List of All Patients off himself =====================>//
   
   module.exports = router;

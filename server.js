@@ -11,8 +11,10 @@ app.use(cors());
 app.use(express.json());
 
 const doctorRouter = require('./routes/doctor.routes')
+const patientRouter = require('./routes/patient.route')
 
 app.use('/doctor',doctorRouter)
+app.use('/patients',patientRouter)
 
 
 
