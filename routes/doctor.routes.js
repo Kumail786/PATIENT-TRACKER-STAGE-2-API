@@ -200,7 +200,7 @@ res.send({
 //====================Doctor getting History of Specific Patient of him=========================>//
 
 router.get('/patients/:id',(req,res)=>{
-  Patient.findOne(req.params.id).then(patient=>{
+  Patient.findById(req.params.id).then(patient=>{
     res.send({
       patient
     })
