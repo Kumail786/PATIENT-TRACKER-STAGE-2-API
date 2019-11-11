@@ -22,6 +22,9 @@ try{
      })
     
      await patient.save()
+     res.send({
+         patient
+     })
      console.log(patient)
     })
     }catch{
