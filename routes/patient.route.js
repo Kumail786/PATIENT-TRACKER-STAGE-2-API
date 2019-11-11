@@ -11,19 +11,19 @@ const JWT_SECRET = "123456789Rawjani$$"
 //=====================================Doctor Adding Patient For The Very First Time =================>//
 try{
     router.post('/add',async(req,res)=>{
-      let Patient = {
+      let patient = {
         name,
         disease,
         dateOfArrival,
       } = req.body
     
-     const patient = new Patient({
-
+     const data = new Patient({
+patient
      })
     
      await patient.save()
      res.send({
-         patient
+         data
      })
      console.log(patient)
     })
