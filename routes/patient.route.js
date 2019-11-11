@@ -12,12 +12,14 @@ const JWT_SECRET = "123456789Rawjani$$"
 try{
     router.post('/add',async(req,res)=>{
       let patient = {
+          doctorid,
         name,
         disease,
         dateOfArrival,
       } = req.body
     
      const data = new Patient({
+         doctorid,
 name,
 disease,
 dateOfArrival,
