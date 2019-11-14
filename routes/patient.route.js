@@ -28,7 +28,7 @@ dateOfArrival,
      await data.save()
      res.send({
          data,
-         message : "GOT"
+        
      })
      console.log(patient)
     })
