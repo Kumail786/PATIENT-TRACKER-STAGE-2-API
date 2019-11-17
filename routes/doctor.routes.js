@@ -104,7 +104,7 @@ console.log(token)
   
     }
     catch{
-  res.send({
+  res.status(400).send({
    message : "Internal Error"
   })
     }
