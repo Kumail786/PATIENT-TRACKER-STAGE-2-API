@@ -13,26 +13,26 @@ app.use(express.json());
 const doctorRouter = require('./routes/doctor.routes')
 const patientRouter = require('./routes/patient.route')
 
-app.use('/doctor',doctorRouter)
-app.use('/patients',patientRouter)
+app.use('/doctor', doctorRouter)
+app.use('/patients', patientRouter)
 
 
 
 
 
 const uri = process.env.ATLAS_URI;
-mongoose.connect(uri, { useNewUrlParser: true,useCreateIndex:true,useUnifiedTopology: true }
+mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true }
 ).catch();
 const connection = mongoose.connection;
 connection.once('open', () => {
   console.log("MongoDB database connection established successfully");
-}).catch(()=>{
-    console.log('error')
+}).catch(() => {
+  console.log('error')
 })
 
 
 
 
 app.listen(port, () => {
-    console.log(`Server is running on port: ${port}`);
+  console.log(`Server is running on port: ${port}`);
 });
